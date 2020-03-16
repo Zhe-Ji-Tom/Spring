@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.9.201906180643-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/java/applicationContext.xml</config>
+		<config>src/main/java/autowire.xml</config>
+		<config>src/main/java/properties.xml</config>
+		<config>src/main/java/spel.xml</config>
+		<config>src/main/java/factory.xml</config>
+		<config>src/main/java/annotation.xml</config>
+		<config>src/main/java/generic.xml</config>
+		<config>src/main/java/aop.xml</config>
+		<config>src/main/java/jdbc.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

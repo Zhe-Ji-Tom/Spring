@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <!-- configure bean by setter -->
+    <bean id="helloWorld" class="beans.HelloWorld">
+        <property name="name" value="Tom"></property>
+    </bean>
+    
+    <!-- configure bean by constructor -->
+    <bean id="car" class="beans.Car">
+        <constructor-arg value="Audi"></constructor-arg>        
+        <constructor-arg value="Shanghai"></constructor-arg>
+        <constructor-arg value="300000"></constructor-arg>
+        <constructor-arg value="150"></constructor-arg>
+    </bean>
+    
+    <bean id="car2" class="beans.Car">
+        <constructor-arg value="BMW"></constructor-arg>
+        <constructor-arg value="Huachen"></constructor-arg>
+        <constructor-arg value="400000"></constructor-arg>
+        <constructor-arg value="280"></constructor-arg>
+    </bean>
+    
+    <!-- configure child bean -->
+    <bean id="people" class="beans.People">
+        <property name="name" value="Tom"></property>
+        <property name="age" value="26"></property>
+        <!-- <property name="car" ref="car"></property> -->
+        <property name="car">
+            <bean class="beans.Car">
+                <constructor-arg value="Ford"></constructor-arg>
+                <constructor-arg value="Changan"></constructor-arg>
+                <constructor-arg value="200000"></constructor-arg>
+                <constructor-arg value="200"></constructor-arg>
+            </bean>
+        </property>
+    </bean>
+    
+    <!-- configure collection bean -->
+    <bean id="people2" class="beans.People">
+        <property name="name" value="Jerry"></property>
+        <property name="age" value="26"></property>
+        <property name="car" ref="carList">
+            <!-- <list>
+                <ref bean="car"/>
+                <ref bean="car2"/>
+            </list> -->
+        </property>
+    </bean>
+    
+    <!-- configure bean for singleton -->
+    <util:list id="carList">
+        <ref bean="car"></ref>
+        <ref bean="car2"></ref>
+    </util:list>
+    
+    <!-- configure bean with map -->
+    <bean id="newPeople" class="beans.NewPeople">
+        <property name="name" value="mike"></property>
+        <property name="age" value="25"></property>
+        <property name="cars">
+            <map>
+                <entry key="AA" value-ref="car"></entry>
+                <entry key="BB" value-ref="car2"></entry>
+            </map>
+        </property>
+    </bean>
+    
+    <!-- configure bean with properties -->
+    <bean id="dataSource" class="beans.DataSource">
+        <property name="properties">
+            <props>
+                <prop key="user">root</prop>
+                <prop key="password">admin</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- configure bean wirh p namespaces -->
+    <bean id="pPeople" class="beans.People" p:age="30" p:name="King" p:car-ref="carList"></bean>
+</beans>
